@@ -1,4 +1,4 @@
-name: Build Installer
+name: Build Installers
 
 on:
   schedule:
@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Download Latest RPCS3
       run: |
@@ -26,28 +26,33 @@ jobs:
         Invoke-WebRequest -Uri "https://pcsx2.net/download/latest" -OutFile "pcsx2.zip"
         Expand-Archive -Path "pcsx2.zip" -DestinationPath "pcsx2"
 
-    - name: Set up Inno Setup
-      uses: dscyrescotti/inno-setup-action@v1
+    - name: Install Chocolatey
+      run: |
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+    - name: Install Inno Setup
+      run: |
+        choco install innosetup
 
     - name: Create RPCS3 Installer
       run: |
-        iscc rpcs3.iss
+        iscc rpcs3_installer.iss
 
     - name: Create PCSX2 Installer
       run: |
-        iscc pcsx2.iss
+        iscc pcsx2_installer.iss
 
     - name: Upload RPCS3 Installer
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: RPCS3Installer
-        path: path\to\rpcs3\installer\output
+        path: path\to\rpcs3\installer\output\RPCS3Setup.exe
 
     - name: Upload PCSX2 Installer
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: PCSX2Installer
-        path: path\to\pcsx2\installer\output
+        path: path\to\pcsx2\installer\output\PCSX2Setup.exe
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
@@ -57,5 +62,3 @@ jobs:
           path\to\pcsx2\installer\output\PCSX2Setup.exe
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        
