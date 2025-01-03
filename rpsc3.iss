@@ -7,10 +7,11 @@ AppName=RPCS3
 AppVersion=0.0.34-17293-a8f80ebf Alpha
 DefaultDirName={commonpf}\RPCS3
 DefaultGroupName=RPCS3
-OutputDir=C:\Users\tommi\Downloads
+OutputDir=.
 OutputBaseFilename=RPCS3Setup
 Compression=lzma
 SolidCompression=yes
+AppPublisher=Hamburgerghini1
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

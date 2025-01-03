@@ -11,6 +11,7 @@ OutputDir=.
 OutputBaseFilename=PCSX2Setup
 Compression=lzma
 SolidCompression=yes
+AppPublisher=Hamburgerghini1
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
