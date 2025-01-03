@@ -11,6 +11,7 @@ OutputDir=.
 OutputBaseFilename=TorzuSetup
 Compression=lzma2/ultra64
 SolidCompression=yes
+AppPublisher=Hamburgerghini1
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

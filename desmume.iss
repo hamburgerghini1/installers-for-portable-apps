@@ -11,7 +11,7 @@ OutputDir=.
 OutputBaseFilename=DeSmuMESetup
 Compression=lzma
 SolidCompression=yes
-AppPublisher=Hamburgerghini
+AppPublisher=Hamburgerghini1
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
