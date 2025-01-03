@@ -19,12 +19,12 @@ jobs:
     - name: Download Latest RPCS3
       run: |
         Invoke-WebRequest -Uri "https://rpcs3.net/latest" -OutFile "rpcs3.zip"
-        Expand-Archive -Path "rpcs3.zip" -DestinationPath "rpcs3"
+        Expand-Archive -Path "rpcs3.zip" -DestinationPath "C:\Users\tommi\Downloads\rpcs3"
 
     - name: Download Latest PCSX2
       run: |
         Invoke-WebRequest -Uri "https://pcsx2.net/download/latest" -OutFile "pcsx2.zip"
-        Expand-Archive -Path "pcsx2.zip" -DestinationPath "pcsx2"
+        Expand-Archive -Path "pcsx2.zip" -DestinationPath "C:\Users\tommi\Downloads\PCSX2"
 
     - name: Install Chocolatey
       run: |
@@ -36,29 +36,29 @@ jobs:
 
     - name: Create RPCS3 Installer
       run: |
-        iscc rpcs3_installer.iss
+        iscc rpcs3.iss
 
     - name: Create PCSX2 Installer
       run: |
-        iscc pcsx2_installer.iss
+        iscc pcsx2.iss
 
     - name: Upload RPCS3 Installer
       uses: actions/upload-artifact@v3
       with:
         name: RPCS3Installer
-        path: path\to\rpcs3\installer\output\RPCS3Setup.exe
+        path: ./RPCS3Setup.exe
 
     - name: Upload PCSX2 Installer
       uses: actions/upload-artifact@v3
       with:
         name: PCSX2Installer
-        path: path\to\pcsx2\installer\output\PCSX2Setup.exe
+        path: ./PCSX2Setup.exe
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          path\to\rpcs3\installer\output\RPCS3Setup.exe
-          path\to\pcsx2\installer\output\PCSX2Setup.exe
+          ./RPCS3Setup.exe
+          ./PCSX2Setup.exe
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
