@@ -31,11 +31,11 @@ jobs:
 
     - name: Create RPCS3 Installer
       run: |
-        iscc rpcs3_installer.iss
+        iscc rpcs3.iss
 
     - name: Create PCSX2 Installer
       run: |
-        iscc pcsx2_installer.iss
+        iscc pcsx2.iss
 
     - name: Upload RPCS3 Installer
       uses: actions/upload-artifact@v2
